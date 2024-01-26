@@ -1,9 +1,10 @@
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans"
 });
@@ -30,6 +31,7 @@ export default function RootLayout({
         <main className='container relative mx-auto scroll-my-12 space-y-14 overflow-auto'>
           {children}
         </main>
+        <Analytics />
       </body>
     </html>
   );
