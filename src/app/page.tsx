@@ -86,7 +86,7 @@ export default function Home() {
       <section className='mx-auto w-full max-w-2xl'>
         <div className='flex flex-col gap-2'>
           <h2 className='mb-2 text-2xl font-bold'>Work</h2>
-          <div className='space-y-4'>
+          <div className='space-y-6 sm:space-y-4'>
             {CV_DATA.work.map(
               ({ title, company, link, time, description, stack }) => (
                 <WorkCard
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
       <section className='mx-auto w-full max-w-2xl'>
         <h2 className='mb-2 text-2xl font-bold'>Skills</h2>
-        <div className='space-x-2'>
+        <div className='flex flex-wrap gap-2'>
           {CV_DATA.skills.map((skill) => (
             <Badge
               className='cursor-pointer hover:bg-foreground hover:text-white'
@@ -138,7 +138,7 @@ export default function Home() {
       </section>
       <section className='mx-auto w-full max-w-2xl'>
         <h2 className='mb-2 text-2xl font-bold'>Tools</h2>
-        <div className='space-x-2'>
+        <div className='flex flex-wrap gap-2'>
           {CV_DATA.tools.map((tool) => (
             <Badge
               className='cursor-pointer hover:bg-foreground hover:text-white'

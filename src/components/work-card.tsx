@@ -20,7 +20,7 @@ const WorkCard = ({
 }: WorkCardProps) => {
   return (
     <div className='-space-y-1'>
-      <div className='flex justify-between'>
+      <div className='flex items-center justify-between'>
         <h3 className='text-lg font-bold'>
           <a
             className='flex items-center gap-2 underline-offset-4 hover:underline'
@@ -36,13 +36,15 @@ const WorkCard = ({
       </div>
       <p className='text-balance py-2 text-sm font-medium'>{title}</p>
       <p className='text-sm font-medium text-muted-foreground'>{description}</p>
-      <div className='flex items-center space-x-2 pt-2'>
+      <div className='flex items-start space-x-2 pt-2 md:items-center'>
         <h4 className='text-xs font-semibold text-muted-foreground'>Stack:</h4>
-        {stack.map((badge) => (
-          <Badge className='cursor-pointer' key={badge} variant='secondary'>
-            {badge}
-          </Badge>
-        ))}
+        <div className='flex flex-wrap gap-2'>
+          {stack.map((badge) => (
+            <Badge className='cursor-pointer' key={badge} variant='secondary'>
+              {badge}
+            </Badge>
+          ))}
+        </div>
       </div>
     </div>
   );

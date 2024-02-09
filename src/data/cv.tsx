@@ -36,7 +36,7 @@ export const CV_DATA = {
   work: [
     {
       title: "Lead Frontend Developer",
-      company: "DAAC System Integrator",
+      company: "DAAC Digital",
       link: "https://daacdigital.com",
       time: "2023 - Present",
       description:

@@ -28,7 +28,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <main className='container relative mx-auto scroll-my-12 space-y-14 overflow-auto'>
+        <main className='relative mx-auto scroll-my-12 space-y-14 overflow-auto'>
           {children}
         </main>
         <Analytics />

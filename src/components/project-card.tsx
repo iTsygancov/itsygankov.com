@@ -34,7 +34,7 @@ const ProjectCard = ({
         </a>
       </h3>
       <p className='text-sm font-medium text-muted-foreground'>{description}</p>
-      <div className='space-x-2'>
+      <div className='flex flex-wrap gap-2'>
         {badges.map((badge) => (
           <Badge className='cursor-pointer' key={badge} variant='secondary'>
             {badge}
