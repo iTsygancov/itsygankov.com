@@ -178,7 +178,7 @@ export default function Home() {
       </section>
       <section className='mx-auto w-full max-w-2xl'>
         <h2 className='mb-2 text-2xl font-bold'>Projects</h2>
-        <div className='space-x-2'>
+        <div className='space-y-6'>
           {CV_DATA.projects.map(({ badges, description, link, title }) => (
             <ProjectCard
               badges={badges}

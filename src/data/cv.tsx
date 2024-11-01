@@ -135,7 +135,7 @@ export const CV_DATA = {
     },
     {
       title: "Wev Developer",
-      company: "Retroradiator",
+      company: "RetroRadiator",
       link: "https://retroradiator.ru",
       time: "2017 - 2019",
       description:
@@ -185,6 +185,31 @@ export const CV_DATA = {
       description:
         "Chrome extension designed to streamline web browsing experience with custom shortcuts",
       badges: ["Side project", "Typescript", "React", "Vite", "Tailwind CSS"]
+    },
+    {
+      title: "Doctrina eLearning platform",
+      link: "https://doc.daacdigital.com/doctrina-auth/login",
+      description: "Internal educational platform for DAAC Digital employees",
+      badges: ["Typescript", "React", "Next.js", "Zustand", "Tailwind CSS"]
+    },
+    {
+      title: "Wiley Research Exchange (ReX)",
+      link: "https://authorservices.wiley.com/",
+      description:
+        "Platform that connects researchers, reviewers, and editors to streamline the publication process",
+      badges: ["JavaScript", "React", "Webpack", "Redux-Saga", "SASS"]
+    },
+    {
+      title: "Rendez-Vous eLearning platform",
+      link: "https://do.rendez-vous.ru",
+      description: "Internal educational platform for Rendez-Vous employees",
+      badges: ["JavaScript", "React", "Webpack", "Redux", "SASS"]
+    },
+    {
+      title: "RetroRadiator online store",
+      link: "https://retroradiator.ru/",
+      description: "Online store",
+      badges: ["JavaScript", "jQuery", "PHP", "Bootstrap"]
     }
   ]
 };
