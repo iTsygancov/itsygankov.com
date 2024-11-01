@@ -1,4 +1,5 @@
 import "./globals.css";
+import { PrintContextProvider } from "@/context/PrintContext";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
@@ -24,13 +25,15 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={cn(
-          "min-h-screen bg-background p-4 font-sans antialiased md:p-16 print:p-12",
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}
       >
-        <main className='relative mx-auto scroll-my-12 space-y-14 overflow-auto'>
-          {children}
-        </main>
+        <PrintContextProvider>
+          <main className='relative mx-auto scroll-my-12 space-y-14 overflow-auto p-4 md:p-16 print:p-12'>
+            {children}
+          </main>
+        </PrintContextProvider>
         <Analytics />
       </body>
     </html>

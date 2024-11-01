@@ -1,12 +1,19 @@
+"use client";
+
+import { CommandMenu } from "@/components/command-menu";
 import ProjectCard from "@/components/project-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import WorkCard from "@/components/work-card";
+import { usePrintContext } from "@/context/PrintContext";
 import { CV_DATA } from "@/data/cv";
+import { cn } from "@/lib/utils";
 import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
+  const { shouldPrintDetails } = usePrintContext();
+
   return (
     <>
       <section className='mx-auto w-full max-w-2xl'>
@@ -78,8 +85,25 @@ export default function Home() {
       <section className='mx-auto w-full max-w-2xl'>
         <div className='flex flex-col gap-2'>
           <h2 className='mb-2 text-2xl font-bold'>Summary</h2>
-          <p className='text-sm font-medium text-muted-foreground'>
-            {CV_DATA.summary}
+          <p
+            className={cn(
+              "hidden text-sm font-medium text-muted-foreground",
+              shouldPrintDetails && "print:block"
+            )}
+          >
+            {CV_DATA.summary.details.map((item, index) => (
+              <span className='block' key={index}>
+                - {item}
+              </span>
+            ))}
+          </p>
+          <p
+            className={cn(
+              "text-sm font-medium text-muted-foreground",
+              shouldPrintDetails && "print:hidden"
+            )}
+          >
+            {CV_DATA.summary.description}
           </p>
         </div>
       </section>
@@ -88,16 +112,19 @@ export default function Home() {
           <h2 className='mb-2 text-2xl font-bold'>Work</h2>
           <div className='space-y-6 sm:space-y-4'>
             {CV_DATA.work.map(
-              ({ title, company, link, time, description, stack }) => (
-                <WorkCard
-                  company={company}
-                  description={description}
-                  key={title}
-                  link={link}
-                  time={time}
-                  title={title}
-                  stack={stack || []}
-                />
+              ({ title, company, link, time, description, stack, print }) => (
+                <>
+                  <WorkCard
+                    company={company}
+                    description={description}
+                    key={title}
+                    link={link}
+                    time={time}
+                    title={title}
+                    stack={stack || []}
+                    print={print}
+                  />
+                </>
               )
             )}
           </div>
@@ -128,7 +155,7 @@ export default function Home() {
         <div className='flex flex-wrap gap-2'>
           {CV_DATA.skills.map((skill) => (
             <Badge
-              className='cursor-pointer hover:bg-foreground hover:text-white'
+              className='cursor-pointer hover:bg-foreground hover:text-white print:px-0 print:text-black'
               key={skill}
             >
               {skill}
@@ -141,7 +168,7 @@ export default function Home() {
         <div className='flex flex-wrap gap-2'>
           {CV_DATA.tools.map((tool) => (
             <Badge
-              className='cursor-pointer hover:bg-foreground hover:text-white'
+              className='cursor-pointer hover:bg-foreground hover:text-white print:px-0 print:text-black'
               key={tool}
             >
               {tool}
@@ -163,6 +190,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <CommandMenu links={CV_DATA.contact.social} />
     </>
   );
 }

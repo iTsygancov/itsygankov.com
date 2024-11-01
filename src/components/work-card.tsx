@@ -1,4 +1,6 @@
 import { Badge } from "@/components/ui/badge";
+import { usePrintContext } from "@/context/PrintContext";
+import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 
 type WorkCardProps = {
@@ -8,6 +10,16 @@ type WorkCardProps = {
   time: string;
   description: string;
   stack: string[];
+  print: {
+    responsibilities: {
+      title: string;
+      content: string[];
+    };
+    achievements?: {
+      title: string;
+      content: string[];
+    };
+  };
 };
 
 const WorkCard = ({
@@ -16,8 +28,11 @@ const WorkCard = ({
   link,
   time,
   title,
-  stack
+  stack,
+  print
 }: WorkCardProps) => {
+  const { shouldPrintDetails } = usePrintContext();
+
   return (
     <div className='-space-y-1'>
       <div className='flex items-center justify-between'>
@@ -34,13 +49,55 @@ const WorkCard = ({
         </h3>
         <p className='text-nowrap text-xs text-muted-foreground'>{time}</p>
       </div>
-      <p className='text-balance py-2 text-sm font-medium'>{title}</p>
-      <p className='text-sm font-medium text-muted-foreground'>{description}</p>
-      <div className='flex items-start space-x-2 pt-2 md:items-center'>
-        <h4 className='text-xs font-semibold text-muted-foreground'>Stack:</h4>
+      <p className='text-balance py-2 text-sm font-medium print:font-bold'>
+        {title}
+      </p>
+
+      <p
+        className={cn(
+          "text-sm font-medium text-muted-foreground",
+          shouldPrintDetails && "print:hidden"
+        )}
+      >
+        {description}
+      </p>
+
+      <div
+        className={cn("hidden space-y-4", shouldPrintDetails && "print:block")}
+      >
+        <p className='hidden text-sm font-medium text-muted-foreground print:block'>
+          <span className='print:font-semibold'>
+            {print.responsibilities.title}
+          </span>
+          {print.responsibilities.content.map((item, index) => (
+            <span className='block' key={index}>
+              - {item}
+            </span>
+          ))}
+        </p>
+        <p className='hidden text-sm font-medium text-muted-foreground print:block'>
+          <span className='print:font-semibold'>
+            {print.achievements?.title}
+          </span>
+          {print.achievements?.content?.map((item, index) => (
+            <span className='block' key={index}>
+              - {item}
+            </span>
+          ))}
+        </p>
+      </div>
+
+      <div className='flex items-start space-x-2 pt-2 md:items-center print:items-center'>
+        <h4 className='text-xs font-semibold text-muted-foreground print:font-bold print:text-black'>
+          Stack:
+        </h4>
         <div className='flex flex-wrap gap-2'>
           {stack.map((badge) => (
-            <Badge className='cursor-pointer' key={badge} variant='secondary'>
+            <Badge
+              className='cursor-pointer print:h-auto print:p-0'
+              key={badge}
+              variant='secondary'
+            >
               {badge}
             </Badge>
           ))}
