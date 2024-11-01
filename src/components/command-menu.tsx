@@ -59,7 +59,7 @@ export function CommandMenu({ links }: CommandMenuProps) {
   };
 
   return (
-    <div className='fixed inset-x-0 bottom-0 m-0 w-full cursor-pointer border-t border-t-slate-100 bg-white p-0 text-center print:hidden'>
+    <div className='fixed inset-x-0 bottom-0 m-0 hidden w-full cursor-pointer border-t border-t-slate-100 bg-white p-0 text-center lg:block print:hidden'>
       <p
         className='p-1 text-sm text-muted-foreground hover:bg-slate-50'
         onClick={() => setOpen(true)}
